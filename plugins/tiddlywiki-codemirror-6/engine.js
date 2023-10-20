@@ -17,11 +17,18 @@ Text editor engine based on a CodeMirror instance
   }
 
   function CodeMirrorEngine(options) {
+
     const {
       vim,
       Vim,
-      getCM,
+      // getCM,
     } = require("$:/plugins/BTC/tiddlywiki-codemirror-6/lib/vim.min.js");
+
+    // const {
+    //   oneDarkTheme,
+    //   oneDark
+    // } = require("$:/plugins/BTC/tiddlywiki-codemirror-6/lib/one-dark.js");
+
 
     // Save our options
     var self = this;
@@ -343,6 +350,7 @@ Text editor engine based on a CodeMirror instance
     // support vimmode
     // use keymap configuration
     editorExtensions.push(vim());
+    // editorExtensions.push(oneDarkTheme, oneDark);
     // let cm = getCM(view);
     // // use cm to access the old cm5 api
     // Vim.exitInsertMode(cm);

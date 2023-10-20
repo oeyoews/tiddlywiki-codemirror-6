@@ -2,9 +2,14 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var view = require('@codemirror/view');
-var language = require('@codemirror/language');
-var highlight = require('@lezer/highlight');
+
+if ($tw.browser && !window.CM) {
+  require("$:/plugins/BTC/tiddlywiki-codemirror-6/lib/codemirror.js");
+}
+
+var view = CM['@codemirror/view'];
+var language = CM['@codemirror/language'];
+var highlight = CM['@lezer/highlight'];
 
 // Using https://github.com/one-dark/vscode-one-dark-theme/ as reference for the colors
 const chalky = "#e5c07b", coral = "#e06c75", cyan = "#56b6c2", invalid = "#ffffff", ivory = "#abb2bf", stone = "#7d8799", // Brightened compared to original to increase contrast
