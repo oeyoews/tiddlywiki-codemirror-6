@@ -8,6 +8,9 @@ dependencies:
   '@replit/codemirror-vim':
     specifier: ^6.0.14
     version: 6.0.14(@codemirror/commands@6.3.0)(@codemirror/language@6.9.1)(@codemirror/search@6.5.4)(@codemirror/state@6.3.1)(@codemirror/view@6.21.3)
+  tiddlywiki:
+    specifier: ^5.3.1
+    version: 5.3.1
 
 packages:
 
@@ -90,6 +93,13 @@ packages:
   /style-mod@4.1.0:
     resolution: {integrity: sha512-Ca5ib8HrFn+f+0n4N4ScTIA9iTOQ7MaGS1ylHcoVqW9J7w2w8PzN6g9gKmTYgGEBH8e120+RCmhpje6jC5uGWA==}
     dev: false
+
+  /tiddlywiki@5.3.1:
+    resolution: {integrity: sha512-17uoTt8w3wvqaF1fqulHeeR86984N0eC8fgd0Ql1LIKgrHRu1+M3fBW8V/ikofU2s74xr6S1efREHaA2zyhe1w==}
+    engines: {node: '>=0.8.2'}
+    hasBin: true
+    dev: false
+    bundledDependencies: []
 
   /w3c-keyname@2.2.8:
     resolution: {integrity: sha512-dpojBhNsCNN7T82Tm7k26A6G9ML3NkhDsnw9n/eoxSRlVBB4CEtIQ/KTCLI2Fwf3ataSXRhYFkQi3SlnFwPvPQ==}

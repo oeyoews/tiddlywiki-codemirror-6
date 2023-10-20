@@ -4,6 +4,7 @@
 		"build": "tiddlywiki --build"
 	},
 	"dependencies": {
-		"@replit/codemirror-vim": "^6.0.14"
+		"@replit/codemirror-vim": "^6.0.14",
+		"tiddlywiki": "^5.3.1"
 	}
 }
