@@ -1,4 +1,7 @@
 {
+	"scripts": {
+		"start": "tiddlywiki --listen"
+	},
 	"dependencies": {
 		"@replit/codemirror-vim": "^6.0.14"
 	}

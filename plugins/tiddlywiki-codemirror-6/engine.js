@@ -19,6 +19,8 @@ Text editor engine based on a CodeMirror instance
   function CodeMirrorEngine(options) {
     const {
       vim,
+      Vim,
+      getCM,
     } = require("$:/plugins/BTC/tiddlywiki-codemirror-6/lib/vim.js");
 
     // Save our options
@@ -288,14 +290,13 @@ Text editor engine based on a CodeMirror instance
       crosshairCursor(),
       highlightSelectionMatches(),
       keymap.of([
-        vim(),
-        // ...closeBracketsKeymap,
-        // ...defaultKeymap,
-        // ...searchKeymap,
-        // ...historyKeymap,
-        // ...foldKeymap,
-        // ...completionKeymap,
-        // ...lintKeymap,
+        ...closeBracketsKeymap,
+        ...defaultKeymap,
+        ...searchKeymap,
+        ...historyKeymap,
+        ...foldKeymap,
+        ...completionKeymap,
+        ...lintKeymap,
       ]),
       Prec.high(keymap.of({ key: "Tab", run: acceptCompletion })),
       EditorView.lineWrapping,
@@ -338,6 +339,16 @@ Text editor engine based on a CodeMirror instance
     ) {
       editorExtensions.push(keymap.of([indentWithTab]));
     }
+
+    // support vimmode
+    editorExtensions.push(vim());
+    // let cm = getCM(view);
+    // // use cm to access the old cm5 api
+    // Vim.exitInsertMode(cm);
+    // Vim.handleKey(cm, "<Esc>");
+    Vim.map("jk", "<Esc>", "insert"); // in insert mode
+    Vim.map("H", "0", "insert");
+    // Vim.map("L", "$", "insert"); // not work
 
     if (
       this.widget.wiki.getTiddlerText(
@@ -418,10 +429,10 @@ Text editor engine based on a CodeMirror instance
         });
         editorExtensions.push(Prec.high(actionCompletions));
         /*editorExtensions.push(
-				javascriptLanguage.data.of({
-					autocomplete: scopeCompletionSource(globalThis)
-				})
-			);*/
+						javascriptLanguage.data.of({
+							autocomplete: scopeCompletionSource(globalThis)
+						})
+					);*/
         break;
       case "application/json":
         var { json, jsonLanguage } = CM["@codemirror/lang-json"];
@@ -546,8 +557,8 @@ Text editor engine based on a CodeMirror instance
   };
 
   /*
-Set the text of the engine if it doesn't currently have focus
-*/
+  Set the text of the engine if it doesn't currently have focus
+  */
   CodeMirrorEngine.prototype.setText = function (text, type) {
     //var {Compartment} = CM["@codemirror/state"];
     //var languageCompartment = new Compartment();
@@ -557,8 +568,8 @@ Set the text of the engine if it doesn't currently have focus
   };
 
   /*
-Update the DomNode with the new text
-*/
+  Update the DomNode with the new text
+  */
   CodeMirrorEngine.prototype.updateDomNodeText = function (text) {
     var self = this;
     var selections = this.cm.state.selection;
@@ -576,29 +587,29 @@ Update the DomNode with the new text
   };
 
   /*
-Get the text of the engine
-*/
+  Get the text of the engine
+  */
   CodeMirrorEngine.prototype.getText = function () {
     return this.cm.state.doc.toString();
   };
 
   /*
-Fix the height of textarea to fit content
-*/
+  Fix the height of textarea to fit content
+  */
   CodeMirrorEngine.prototype.fixHeight = function () {
     this.cm.requestMeasure();
   };
 
   /*
-Focus the engine node
-*/
+  Focus the engine node
+  */
   CodeMirrorEngine.prototype.focus = function () {
     this.cm.focus();
   };
 
   /*
-Create a blank structure representing a text operation
-*/
+  Create a blank structure representing a text operation
+  */
   CodeMirrorEngine.prototype.createTextOperation = function (type) {
     var selections = this.cm.state.selection.ranges;
     var operations;
@@ -651,8 +662,8 @@ Create a blank structure representing a text operation
   };
 
   /*
-Execute a text operation
-*/
+  Execute a text operation
+  */
   CodeMirrorEngine.prototype.executeTextOperation = function (operations) {
     var self = this;
     if (operations.type && operations.type === "undo") {
