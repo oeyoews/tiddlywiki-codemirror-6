@@ -21,7 +21,7 @@ Text editor engine based on a CodeMirror instance
       vim,
       Vim,
       getCM,
-    } = require("$:/plugins/BTC/tiddlywiki-codemirror-6/lib/vim.js");
+    } = require("$:/plugins/BTC/tiddlywiki-codemirror-6/lib/vim.min.js");
 
     // Save our options
     var self = this;
@@ -341,14 +341,21 @@ Text editor engine based on a CodeMirror instance
     }
 
     // support vimmode
+    // use keymap configuration
     editorExtensions.push(vim());
     // let cm = getCM(view);
     // // use cm to access the old cm5 api
     // Vim.exitInsertMode(cm);
     // Vim.handleKey(cm, "<Esc>");
     Vim.map("jk", "<Esc>", "insert"); // in insert mode
-    Vim.map("H", "0", "insert");
+    // Vim.map("H", "0", "insert");
     // Vim.map("L", "$", "insert"); // not work
+    Vim.defineEx("q", "q", function () {
+      // exit this file
+    });
+    Vim.defineEx("w", "w", function () {
+      // save this file
+    });
 
     if (
       this.widget.wiki.getTiddlerText(

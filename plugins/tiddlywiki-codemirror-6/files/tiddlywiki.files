@@ -1,10 +1,10 @@
 {
 	"tiddlers": [
 		{
-			"file": "lib/vim.js",
+			"file": "lib/vim.min.js",
 			"fields": {
 				"type": "application/javascript",
-				"title": "$:/plugins/BTC/tiddlywiki-codemirror-6/lib/vim.js",
+				"title": "$:/plugins/BTC/tiddlywiki-codemirror-6/lib/vim.min.js",
 				"module-type": "library"
 			}
 		},
