@@ -291,7 +291,7 @@ Text editor engine based on a CodeMirror instance
       highlightSelectionMatches(),
       keymap.of([
         ...closeBracketsKeymap,
-        ...defaultKeymap,
+        // ...defaultKeymap, // option vim mode or default mode
         ...searchKeymap,
         ...historyKeymap,
         ...foldKeymap,
@@ -348,8 +348,8 @@ Text editor engine based on a CodeMirror instance
     // Vim.exitInsertMode(cm);
     // Vim.handleKey(cm, "<Esc>");
     Vim.map("jk", "<Esc>", "insert"); // in insert mode
-    // Vim.map("H", "0", "insert");
-    // Vim.map("L", "$", "insert"); // not work
+    Vim.map("H", "0", "normal");
+    Vim.map("L", "$", "normal");
     Vim.defineEx("q", "q", function () {
       // exit this file
     });
